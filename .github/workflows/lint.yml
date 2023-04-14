@@ -14,5 +14,8 @@ jobs:
           architecture: x64
       - name: Checkout
         uses: actions/checkout@v1
+      - name: GitHub Action for pylint
+        uses: cclauss/GitHub-Action-for-pylint@0.7.0
+        run: pylint **/*.py
       - name: Run mypy
         uses: jpetrucciani/mypy-check@master
