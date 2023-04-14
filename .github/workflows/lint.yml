@@ -1,0 +1,20 @@
+name: Lint
+
+on:
+  - push
+
+jobs:
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.10.11
+          architecture: x64
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: GitHub Action for pylint
+        uses: cclauss/GitHub-Action-for-pylint@0.7.0
+      - name: Run mypy
+        uses: jpetrucciani/mypy-check@master
