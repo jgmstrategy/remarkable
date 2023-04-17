@@ -1,3 +1,4 @@
+# type: ignore[import]
 from flask import Blueprint, Flask
 from flask_restx import Api
 
