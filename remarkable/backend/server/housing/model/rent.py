@@ -1,7 +1,7 @@
 """Models for units listed for rent"""
 
 from flask_restx import Namespace
-from flask_restx.fields import DateTime, Float, String, Integer, Nested, Boolean
+from flask_restx.fields import Boolean, DateTime, Float, Integer, Nested, String
 
 api = Namespace("rent", "Rent related operations")
 
