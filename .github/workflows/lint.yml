@@ -28,7 +28,7 @@ jobs:
           poetry-version: ${{ matrix.poetry-version }}
       - name: Install dependencies
         run: poetry install
-      - name: Run mypy in poetry shell
-        run: poetry run mypy .
-      - name: Run pylint
-        run: pylint remarkable
+      - name: Run mypy scan
+        run: poetry run mypy remarkable
+      - name: Run pylint scan
+        run: poetry run pylint remarkable
