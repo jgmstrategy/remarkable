@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint
+from flask import Blueprint, Flask
 from flask_restx import Api
 
 # from flask_sqlalchemy import SQLAlchemy

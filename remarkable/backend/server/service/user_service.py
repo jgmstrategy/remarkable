@@ -1,5 +1,5 @@
-import uuid
 import datetime
+import uuid
 
 from remarkable.backend.server.app import db
 from remarkable.backend.server.model.user import User
