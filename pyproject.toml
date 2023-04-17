@@ -12,7 +12,6 @@ flask-bcrypt = "^1.0.1"
 flask-restplus = "^0.13.0"
 flask-migrate = "^4.0.4"
 pyjwt = "^2.6.0"
-flask-script = "^2.0.6"
 
 
 [tool.poetry.group.dev.dependencies]
