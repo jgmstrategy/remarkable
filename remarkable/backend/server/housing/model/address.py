@@ -5,6 +5,14 @@ from flask_restx.fields import Boolean, Float, Integer, List, Nested, String
 
 api = Namespace("address", description="Location related operations")
 
+owner = api.model(
+    "owner",
+    {
+        "id": String(name="Name ID", description="UUID of a owner name", required=True),
+        "name": String(name="Name", description="Name", required=True),
+    },
+)
+
 neighborhood = api.model(
     "Neighborhood",
     {
@@ -39,6 +47,7 @@ address = api.model(
         "name": String(
             title="Name", description="Friendly name of community", required=False
         ),
+        "owner": String(name="Owner ID", description="UUID of owner", required=False),
         "community": String(
             title="Community", description="UUID of community", required=False
         ),
