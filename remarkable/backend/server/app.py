@@ -1,32 +1,25 @@
-# type: ignore[import]
-from flask import Blueprint, Flask
+"""Creates the Flask server"""
+
+# mypy: disable-error-code="import"
+from flask import Flask
 from flask_restx import Api
+from werkzeug.middleware.proxy_fix import ProxyFix
 
-# from flask_sqlalchemy import SQLAlchemy
-# from flask_bcrypt import Bcrypt
-
-# from .config import config_by_name
-
-blueprint = Blueprint("api", __name__)
-
-api = Api(
-    blueprint,
-    title="remarkable backend",
-    version="1.0",
-    description="remarkable backend",
-)
-
-# api.add_namespace(user_ns, path="/user")
+from remarkable.backend.server.controller import api
 
 
-# db = SQLAlchemy()
-# flask_bcrypt = Bcrypt()
-
-
-def create_app(config_name) -> Flask:
+def create_app(app_api: Api) -> Flask:
+    """Create the Flask object"""
     app = Flask(__name__)
-    # app.config.from_object(config_by_name[config_name])
+    app.wsgi_app = ProxyFix(app.wsgi_app)  # type: ignore
+
+    app_api.init_app(app)
     # db.init_app(app)
     # flask_bcrypt.init_app(app)
 
     return app
+
+
+if __name__ == "__main__":
+    flask_app = create_app(api)
+    flask_app.run()
