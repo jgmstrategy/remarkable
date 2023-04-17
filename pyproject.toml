@@ -1,3 +1,12 @@
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 88
+profile = "black"
+
 [tool.poetry]
 name = "remarkable"
 version = "0.1.0"
@@ -13,12 +22,11 @@ flask-migrate = "^4.0.4"
 pyjwt = "^2.6.0"
 flask-restx = "^1.1.0"
 
-
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.2.0"
 isort = "^5.12.0"
-pylint = {extras = ["spelling"], version = "^2.17.2"}
-black = {extras = ["jupyter"], version = "^23.3.0"}
+pylint = { extras = ["spelling"], version = "^2.17.2" }
+black = { extras = ["jupyter"], version = "^23.3.0" }
 flask-testing = "^0.8.1"
 
 [build-system]

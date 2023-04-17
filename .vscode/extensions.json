@@ -7,6 +7,8 @@
         "ms-toolsai.jupyter-renderers",
         "ms-toolsai.vscode-jupyter-slideshow",
         "ms-python.vscode-pylance",
-        "ms-python.python"
+        "ms-python.python",
+        "bungcip.better-toml",
+        "tamasfe.even-better-toml"
     ]
 }

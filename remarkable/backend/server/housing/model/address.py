@@ -1,7 +1,7 @@
 """Models for local addressing"""
 
-from flask_restx import Namespace  # type: ignore
-from flask_restx.fields import Boolean, Integer, Float, String, List, Nested  # type: ignore
+from flask_restx import Namespace
+from flask_restx.fields import Boolean, Float, Integer, List, Nested, String
 
 api = Namespace("address", description="Location related operations")
 
@@ -24,7 +24,7 @@ neighborhood = api.model(
             required=True,
         ),
     },
-    strict=True
+    strict=True,
 )
 
 address = api.model(
@@ -32,6 +32,9 @@ address = api.model(
     {
         "id": String(
             title="Location ID", description="UUID of location", required=True
+        ),
+        "mls": String(
+            title="MLS Number", description="Real estate listing number", required=False
         ),
         "name": String(
             title="Name", description="Friendly name of community", required=False
@@ -46,6 +49,9 @@ address = api.model(
         "zip": String(title="Zip Code", required=True),
         "county": String(title="County", required=True),
         "tra": String(title="Tax Rate Area Code", required=False),
+        "built_year": Integer(
+            title="Year Built", description="Year the address was built", required=False
+        ),
         "units": Integer(
             default=1,
             title="Units",
@@ -82,6 +88,7 @@ address = api.model(
                     title="Pool Size", description="Pool area", required=False
                 ),
             },
+            title="Pool Data",
             allow_null=False,
             skip_none=False,
         ),
@@ -124,5 +131,5 @@ address = api.model(
             required=False,
         ),
     },
-    strict=True
+    strict=True,
 )

@@ -1,7 +1,7 @@
 """Creates the Flask server"""
 
 from flask import Flask
-from flask_restx import Api  # type: ignore
+from flask_restx import Api
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from remarkable.backend.server.controller import api
