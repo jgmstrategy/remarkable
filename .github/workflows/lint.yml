@@ -1,20 +1,32 @@
 name: Lint
-
 on:
   - push
+  - pull_request
 
 jobs:
-  mypy:
+  lint:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: 
+          - 3.7
+          - 3.8
+          - 3.9
+          - 3.10
+          - 3.11
+        poetry-version: 1.4.2
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v1
+      - uses: actions/checkout@v3
+      - uses: psf/black@stable
+      - uses: actions/setup-python@v4
         with:
-          python-version: 3.10.11
-          architecture: x64
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: GitHub Action for pylint
-        uses: cclauss/GitHub-Action-for-pylint@0.7.0
+          python-version: ${{ matrix.python-version }}
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+      - name: Install dependencies
+        run: poetry install
       - name: Run mypy
-        uses: jpetrucciani/mypy-check@master
+        run: mypy .
