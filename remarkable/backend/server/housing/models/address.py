@@ -8,8 +8,18 @@ api = Namespace("address", description="Location related operations")
 owner = api.model(
     "Owner",
     {
-        "id": String(name="Name ID", description="UUID of a owner name", required=True),
-        "name": String(name="Name", description="Name", required=True),
+        "id": String(
+            name="Name ID",
+            description="UUID of a owner name",
+            required=True,
+            example="Regents of California",
+        ),
+        "name": String(
+            name="Name",
+            description="Name",
+            required=True,
+            example="00000000-0000-0000-0000-000000000000",
+        ),
     },
 )
 
