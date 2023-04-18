@@ -189,7 +189,7 @@ address = api.model(
                 title="Children Address",
                 description="Children UUID, if it has subdivided units",
                 required=False,
-                example="00000000-0000-0000-0000-000000000000"
+                example="00000000-0000-0000-0000-000000000000",
             ),
             required=False,
         ),
