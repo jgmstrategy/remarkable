@@ -13,7 +13,7 @@
 python -m remarkable.backend.server.app
 ```
 
-### Lint Locally
+#### Lint Locally
 
 Linux/macOS:
 
@@ -25,4 +25,12 @@ Windows PowerShell:
 
 ```powershell
 isort &; black .; mypy .; pylint remarkable
+```
+
+### Run Frontend
+
+Your working directory must be `frontend/`.
+
+```bash
+npm run dev
 ```
