@@ -2,9 +2,11 @@
 
 from flask_restx import Resource
 
-from remarkable.backend.server.housing.models.rent import entry, api
+from remarkable.backend.server.housing.models.rent import api, entry
 
 
+# pylint: disable=redefined-builtin
+# pylint: disable=unused-argument
 @api.route("/create")
 class CreateEntry(Resource):
     """Create a rent entry"""
@@ -25,3 +27,4 @@ class EntryById(Resource):
     def get(self, id) -> dict:
         """Get an entry"""
         api.abort(404)
+        return {}

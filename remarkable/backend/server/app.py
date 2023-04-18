@@ -2,7 +2,7 @@
 
 from flask import Flask
 from flask_restx import Api
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy  # pylint: disable=unused-import
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from remarkable.backend.server.controller import api

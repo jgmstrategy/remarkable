@@ -3,13 +3,15 @@
 from flask_restx import Resource
 
 from remarkable.backend.server.housing.models.address import (
-    owner,
-    neighborhood,
     address,
     api,
+    neighborhood,
+    owner,
 )
 
 
+# pylint: disable=redefined-builtin
+# pylint: disable=unused-argument
 @api.route("/owner/create")
 class CreateOwner(Resource):
     """Create an owner"""
@@ -31,6 +33,7 @@ class Owner(Resource):
     def get(self, id) -> dict:
         """Get an owner"""
         api.abort(404)
+        return {}
 
 
 @api.route("/neighborhood/create")
@@ -54,6 +57,7 @@ class Neighborhood(Resource):
     def get(self, id) -> dict:
         """Get a neighborhood"""
         api.abort(404)
+        return {}
 
 
 @api.route("/create")
@@ -77,3 +81,4 @@ class Address(Resource):
     def get(self, id) -> dict:
         """Get an address"""
         api.abort(404)
+        return {}
