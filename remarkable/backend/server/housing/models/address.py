@@ -77,8 +77,8 @@ class Neighborhood(Base):
     __tablename__ = "neighborhoods"
 
     name: Mapped[str] = db.Column(db.String, nullable=True)
-    gated: Mapped[bool] = db.Column(db.Boolean, nullable=False, server_default=False)
-    hoa: Mapped[bool] = db.Column(db.Boolean, nullable=False, server_default=False)
+    gated: Mapped[bool] = db.Column(db.Boolean, nullable=False, default=False)
+    hoa: Mapped[bool] = db.Column(db.Boolean, nullable=False, default=False)
 
 
 address = api.model(
@@ -263,15 +263,15 @@ class Address(Base):
     country: Mapped[str] = db.Column(db.String, nullable=True)
     tra: Mapped[str] = db.Column(db.String, nullable=True)
     built_year: Mapped[int] = db.Column(db.Integer, nullable=True)
-    units: Mapped[int] = db.Column(db.Integer, server_default=1)
+    units: Mapped[int] = db.Column(db.Integer, default=1)
     beds: Mapped[int] = db.Column(db.Integer, nullable=True)
     baths: Mapped[float] = db.Column(db.Float, nullable=True)
     floor_space: Mapped[int] = db.Column(db.Integer, nullable=True)
-    floors: Mapped[int] = db.Column(db.Integer, server_default=1)
-    has_pool: Mapped[bool] = db.Column(db.Boolean, server_default=False)
+    floors: Mapped[int] = db.Column(db.Integer, default=1)
+    has_pool: Mapped[bool] = db.Column(db.Boolean, default=False)
     pool_size: Mapped[int] = db.Column(db.Integer, nullable=True)
-    garage_spaces: Mapped[int] = db.Column(db.Integer, server_default=0)
-    covered_spaces: Mapped[int] = db.Column(db.Integer, server_default=0)
-    uncovered_spaces: Mapped[int] = db.Column(db.Integer, server_default=0)
+    garage_spaces: Mapped[int] = db.Column(db.Integer, default=0)
+    covered_spaces: Mapped[int] = db.Column(db.Integer, default=0)
+    uncovered_spaces: Mapped[int] = db.Column(db.Integer, default=0)
     parent: Mapped[str] = db.Column(db.String, nullable=True)
     children: Mapped[str] = db.Column(db.String, nullable=True)

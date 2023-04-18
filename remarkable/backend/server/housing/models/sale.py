@@ -1,7 +1,12 @@
 """Models for units listed for sale"""
 
+import datetime
+
 from flask_restx import Namespace
 from flask_restx.fields import Boolean, DateTime, Float, Nested, String
+from sqlalchemy.orm import Mapped
+
+from remarkable.backend.server.models import Base, db
 
 api = Namespace("sale", "Sale price related operations")
 
@@ -47,3 +52,19 @@ listing = api.model(
     },
     strict=True,
 )
+
+
+# pylint: disable=too-few-public-methods
+class EstateListing(Base):
+    """Real estate listing table"""
+
+    __tablename__ = "estate_listings"
+
+    address: Mapped[str] = db.Column(db.String)
+    price: Mapped[float] = db.Column(db.Float)
+    foreclosure: Mapped[bool] = db.Column(db.Boolean, nullable=True, default=False)
+    auction: Mapped[bool] = db.Column(db.Boolean, nullable=True, default=False)
+    bid: Mapped[bool] = db.Column(db.Boolean, nullable=True, default=False)
+    ts: Mapped[datetime.datetime] = db.Column(
+        db.DateTime, default=db.func.current_timestamp()
+    )
