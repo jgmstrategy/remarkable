@@ -65,7 +65,7 @@ class RentEntry(Base):
 
     address: Mapped[str] = db.Column(db.String)
     price: Mapped[float] = db.Column(db.Float)
-    contract_length: Mapped[int] = db.Column(db.Integer, default=True, default=12)
+    contract_length: Mapped[int] = db.Column(db.Integer, nullable=True, default=12)
     ts: Mapped[datetime.datetime] = db.Column(
         db.DateTime, default=db.func.current_timestamp()
     )

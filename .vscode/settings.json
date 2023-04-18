@@ -9,6 +9,7 @@
         "**/Thumbs.db": true,
         "**/__pycache__": true,
         "**/.mypy_cache": true,
-        "venv": true
+        "venv": true,
+        ".pytest_cache": true
     }
 }
