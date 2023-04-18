@@ -77,9 +77,9 @@ address = api.model(
             required=False,
             example="00000000-0000-0000-0000-000000000000",
         ),
-        "community": String(
-            title="Community",
-            description="UUID of community",
+        "neighborhood": String(
+            title="Neighborhood",
+            description="UUID of neighborhood",
             required=False,
             example="00000000-0000-0000-0000-000000000000",
         ),
