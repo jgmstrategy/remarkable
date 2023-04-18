@@ -2,7 +2,12 @@
 
 from flask_restx import Resource
 
-from remarkable.backend.server.housing.models.address import owner, address, api
+from remarkable.backend.server.housing.models.address import (
+    owner,
+    neighborhood,
+    address,
+    api,
+)
 
 
 @api.route("/owner/create")
@@ -25,6 +30,29 @@ class Owner(Resource):
     @api.marshal_with(owner)
     def get(self, id) -> dict:
         """Get an owner"""
+        api.abort(404)
+
+
+@api.route("/neighborhood/create")
+class CreateNeighborhood(Resource):
+    """Create a neighborhood"""
+
+    @api.doc("create_neighborhood")
+    @api.expect(neighborhood)
+    def post(self) -> None:
+        """Create a neighborhood"""
+        api.abort(404)
+
+
+@api.route("/neighborhood/<id>")
+@api.param("id", "UUID of neighborhood")
+class Neighborhood(Resource):
+    """Neighborhoods as a resource"""
+
+    @api.doc("get_neighborhood")
+    @api.marshal_with(neighborhood)
+    def get(self, id) -> dict:
+        """Get a neighborhood"""
         api.abort(404)
 
 

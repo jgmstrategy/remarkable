@@ -27,19 +27,24 @@ neighborhood = api.model(
     "Neighborhood",
     {
         "id": String(
-            title="Neighborhood ID", description="UUID of neighborhood", required=True
+            title="Neighborhood ID",
+            description="UUID of neighborhood",
+            required=True,
+            example="00000000-0000-0000-0000-000000000000",
         ),
         "gated": Boolean(
             default=False,
             title="Gated Community",
             description="Whether or not the community is gated",
             required=True,
+            example=False,
         ),
         "hoa": Boolean(
             default=False,
             title="HOA",
             description="Whether or not the community has HOA",
             required=True,
+            example=False,
         ),
     },
     strict=True,
