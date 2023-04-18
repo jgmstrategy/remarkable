@@ -1,7 +1,9 @@
 """Global models initializer"""
 
+import datetime
+
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.schema import Column
+from sqlalchemy.orm import Mapped
 
 from remarkable.backend.util.uuid import GUID, default_uuid
 
@@ -15,9 +17,11 @@ class Base(db.Model):
 
     __abstract__ = True
 
-    id: Column = db.Column(GUID(), primary_key=True, default=default_uuid)
-    created_at: Column = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at: Column = db.Column(
+    id: Mapped[str] = db.Column(GUID(), primary_key=True, default=default_uuid)
+    created_at: Mapped[datetime.datetime] = db.Column(
+        db.DateTime, default=db.func.current_timestamp()
+    )
+    updated_at: Mapped[datetime.datetime] = db.Column(
         db.DateTime,
         default=db.func.current_timestamp(),
         onupdate=db.func.current_timestamp(),

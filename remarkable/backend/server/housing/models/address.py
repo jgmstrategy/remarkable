@@ -2,7 +2,7 @@
 
 from flask_restx import Namespace
 from flask_restx.fields import Boolean, Float, Integer, List, Nested, String
-from sqlalchemy.schema import Column
+from sqlalchemy.orm import Mapped
 
 from remarkable.backend.server.models import Base, db
 
@@ -33,7 +33,7 @@ class Owner(Base):
 
     __tablename__ = "owners"
 
-    name: Column = db.Column(db.String, nullable=False)
+    name: Mapped[str] = db.Column(db.String, nullable=False)
 
 
 neighborhood = api.model(
