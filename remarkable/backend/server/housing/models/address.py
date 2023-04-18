@@ -2,6 +2,9 @@
 
 from flask_restx import Namespace
 from flask_restx.fields import Boolean, Float, Integer, List, Nested, String
+from sqlalchemy.schema import Column
+
+from remarkable.backend.server.models import Base, db
 
 api = Namespace("address", description="Location related operations")
 
@@ -22,6 +25,16 @@ owner = api.model(
         ),
     },
 )
+
+
+# pylint: disable=too-few-public-methods
+class Owner(Base):
+    """Owners table"""
+
+    __tablename__ = "owners"
+
+    name: Column = db.Column(db.String, nullable=False)
+
 
 neighborhood = api.model(
     "Neighborhood",

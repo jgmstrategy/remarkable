@@ -14,8 +14,8 @@ def create_app(app_api: Api) -> Flask:
     app = Flask(__name__)
     app.wsgi_app = ProxyFix(app.wsgi_app)  # type: ignore
 
-    for k, v in FLASK_CONFIG.items():
-        app.config[k] = v
+    for key, value in FLASK_CONFIG.items():
+        app.config[key] = value
 
     app_api.init_app(app)
     db.init_app(app)
