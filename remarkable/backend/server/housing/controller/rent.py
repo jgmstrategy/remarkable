@@ -18,7 +18,7 @@ class CreateEntry(Resource):
         api.expect(404)
 
 
-@api.route("/<id>")
+@api.route("/id/<id>")
 class EntryById(Resource):
     """Entries as a resource"""
 

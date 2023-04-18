@@ -23,7 +23,7 @@ class CreateOwner(Resource):
         api.abort(404)
 
 
-@api.route("/owner/<id>")
+@api.route("/owner/id/<id>")
 @api.param("id", "UUID of owner")
 class Owner(Resource):
     """Owners as a resource"""
@@ -47,7 +47,7 @@ class CreateNeighborhood(Resource):
         api.abort(404)
 
 
-@api.route("/neighborhood/<id>")
+@api.route("/neighborhood/id/<id>")
 @api.param("id", "UUID of neighborhood")
 class Neighborhood(Resource):
     """Neighborhoods as a resource"""
@@ -71,7 +71,7 @@ class CreateAddress(Resource):
         api.abort(404)
 
 
-@api.route("/<id>")
+@api.route("/id/<id>")
 @api.param("id", "UUID of address")
 class Address(Resource):
     """Address as a resource"""
