@@ -17,7 +17,7 @@ class CreateListing(Resource):
 
 
 @api.route("/id/<id>")
-class Listing(Resource):
+class ListingById(Resource):
     """Real estate as a resource"""
 
     @api.doc("get_listing")

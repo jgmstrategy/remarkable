@@ -12,13 +12,13 @@ owner = api.model(
             name="Name ID",
             description="UUID of a owner name",
             required=True,
-            example="Regents of California",
+            example="00000000-0000-0000-0000-000000000000",
         ),
         "name": String(
             name="Name",
             description="Name",
             required=True,
-            example="00000000-0000-0000-0000-000000000000",
+            example="Regents of California",
         ),
     },
 )
