@@ -6,7 +6,7 @@ from flask_restx.fields import Boolean, Float, Integer, List, Nested, String
 api = Namespace("address", description="Location related operations")
 
 owner = api.model(
-    "owner",
+    "Owner",
     {
         "id": String(name="Name ID", description="UUID of a owner name", required=True),
         "name": String(name="Name", description="Name", required=True),
@@ -56,7 +56,10 @@ address = api.model(
         ),
         "street": String(title="Street", description="Street address", required=True),
         "zip": String(title="Zip Code", required=True),
-        "county": String(title="County", required=True),
+        "county": String(title="County", required=False),
+        "city": String(title="City", required=True),
+        "state": String(title="State", required=True),
+        "country": String(title="Country", required=True),
         "tra": String(title="Tax Rate Area Code", required=False),
         "built_year": Integer(
             title="Year Built", description="Year the address was built", required=False
@@ -86,42 +89,48 @@ address = api.model(
             default=1, title="Stories", description="Number of stories", required=True
         ),
         "pool": Nested(
-            {
-                "has_pool": Boolean(
-                    default=False,
-                    title="Pool",
-                    description="Property has a private pool",
-                    required=True,
-                ),
-                "pool_size": Integer(
-                    title="Pool Size", description="Pool area", required=False
-                ),
-            },
+            api.model(
+                "Pool Data",
+                {
+                    "has_pool": Boolean(
+                        default=False,
+                        title="Pool",
+                        description="Property has a private pool",
+                        required=True,
+                    ),
+                    "pool_size": Integer(
+                        title="Pool Size", description="Pool area", required=False
+                    ),
+                },
+            ),
             title="Pool Data",
             allow_null=False,
             skip_none=False,
         ),
         "parking": Nested(
-            {
-                "garage": Integer(
-                    default=0,
-                    title="Garage Spots",
-                    description="Number of spots in a garage",
-                    required=True,
-                ),
-                "covered": Integer(
-                    default=0,
-                    title="Covered Spots",
-                    description="Number of top-covered spots",
-                    required=True,
-                ),
-                "uncovered": Integer(
-                    default=0,
-                    title="Uncovered Spots",
-                    description="Number of uncovered, non-street spots",
-                    required=True,
-                ),
-            },
+            api.model(
+                "Parking Data",
+                {
+                    "garage": Integer(
+                        default=0,
+                        title="Garage Spots",
+                        description="Number of spots in a garage",
+                        required=True,
+                    ),
+                    "covered": Integer(
+                        default=0,
+                        title="Covered Spots",
+                        description="Number of top-covered spots",
+                        required=True,
+                    ),
+                    "uncovered": Integer(
+                        default=0,
+                        title="Uncovered Spots",
+                        description="Number of uncovered, non-street spots",
+                        required=True,
+                    ),
+                },
+            ),
             allow_null=False,
             skip_none=False,
             required=True,

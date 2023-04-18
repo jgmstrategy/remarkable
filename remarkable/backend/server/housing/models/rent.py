@@ -6,7 +6,7 @@ from flask_restx.fields import Boolean, DateTime, Float, Integer, Nested, String
 api = Namespace("rent", "Rent related operations")
 
 entry = api.model(
-    "entry",
+    "Rent Entry",
     {
         "id": String(
             name="Entry ID", description="UUID of a price entry", required=True
@@ -31,13 +31,16 @@ entry = api.model(
             required=False,
         ),
         "utilities": Nested(
-            {
-                "electricity": Boolean(default=False, required=False),
-                "water": Boolean(default=False, required=False),
-                "trash": Boolean(default=False, required=False),
-                "sewage": Boolean(default=False, required=False),
-                "gas": Boolean(default=False, required=False),
-            },
+            api.model(
+                "utilities",
+                {
+                    "electricity": Boolean(default=False, required=False),
+                    "water": Boolean(default=False, required=False),
+                    "trash": Boolean(default=False, required=False),
+                    "sewage": Boolean(default=False, required=False),
+                    "gas": Boolean(default=False, required=False),
+                },
+            ),
             title="Included Utilities",
             description="Utilities included for free",
             required=True,
