@@ -2,6 +2,7 @@
 
 from flask import Flask
 from flask_restx import Api
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from remarkable.backend.server.controller import api
