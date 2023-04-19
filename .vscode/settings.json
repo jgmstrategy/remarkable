@@ -10,6 +10,9 @@
         "**/__pycache__": true,
         "**/.mypy_cache": true,
         "venv": true,
-        ".pytest_cache": true
+        ".pytest_cache": true,
+        "frontend/.cache": true,
+        "frontend/**/build": true,
+        "frontend/node_modules": true
     }
 }
