@@ -1,0 +1,33 @@
+{
+    "extends": [
+        "@remix-run/eslint-config",
+        "@remix-run/eslint-config/node"
+    ],
+    "rules": {
+        "eol-last": "off",
+        "semi": "error",
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "jsx-quotes": [
+            "error",
+            "prefer-single"
+        ],
+        "prefer-const": [
+            "error",
+            {
+                "destructuring": "any",
+                "ignoreReadBeforeAssign": false
+            }
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 88,
+                "ignoreComments": false,
+                "ignoreStrings": true
+            }
+        ]
+    }
+}

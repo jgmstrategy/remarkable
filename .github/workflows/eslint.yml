@@ -1,0 +1,18 @@
+name: Lint frontend
+on:
+  - push
+
+jobs:
+  eslint:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm install
+      - name: Run ESLint
+        working-directory: frontend
+        run: npx eslint .
