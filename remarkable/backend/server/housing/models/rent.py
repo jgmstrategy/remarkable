@@ -1,7 +1,12 @@
 """Models for units listed for rent"""
 
+import datetime
+
 from flask_restx import Namespace
 from flask_restx.fields import Boolean, DateTime, Float, Integer, Nested, String
+from sqlalchemy.orm import Mapped
+
+from remarkable.backend.server.models import Base, db
 
 api = Namespace("rent", "Rent related operations")
 
@@ -50,3 +55,23 @@ entry = api.model(
     },
     strict=True,
 )
+
+
+# pylint: disable=too-few-public-methods
+class RentEntry(Base):
+    """Rent entry table"""
+
+    __tablename__ = "rent_entries"
+
+    address: Mapped[str] = db.Column(db.String)
+    price: Mapped[float] = db.Column(db.Float)
+    contract_length: Mapped[int] = db.Column(db.Integer, nullable=True, default=12)
+    ts: Mapped[datetime.datetime] = db.Column(
+        db.DateTime, default=db.func.current_timestamp()
+    )
+    discount: Mapped[float] = db.Column(db.Float, nullable=True, default=0)
+    electricity: Mapped[bool] = db.Column(db.Boolean, nullable=True, default=False)
+    water: Mapped[bool] = db.Column(db.Boolean, nullable=True, default=False)
+    trash: Mapped[bool] = db.Column(db.Boolean, nullable=True, default=False)
+    sewage: Mapped[bool] = db.Column(db.Boolean, nullable=True, default=False)
+    gas: Mapped[bool] = db.Column(db.Boolean, nullable=True, default=False)

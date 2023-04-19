@@ -45,6 +45,12 @@ neighborhood = api.model(
             required=True,
             example="00000000-0000-0000-0000-000000000000",
         ),
+        "name": String(
+            title="Neighborhood name",
+            description="Name of the neighborhood",
+            required=False,
+            example="La Jolla Farms",
+        ),
         "gated": Boolean(
             default=False,
             title="Gated Community",
@@ -62,6 +68,18 @@ neighborhood = api.model(
     },
     strict=True,
 )
+
+
+# pylint: disable=too-few-public-methods
+class Neighborhood(Base):
+    """Neighborhood table"""
+
+    __tablename__ = "neighborhoods"
+
+    name: Mapped[str] = db.Column(db.String, nullable=True)
+    gated: Mapped[bool] = db.Column(db.Boolean, nullable=False, default=False)
+    hoa: Mapped[bool] = db.Column(db.Boolean, nullable=False, default=False)
+
 
 address = api.model(
     "Address",
@@ -224,3 +242,36 @@ address = api.model(
     },
     strict=True,
 )
+
+
+# pylint: disable=too-few-public-methods
+class Address(Base):
+    """Addresses table"""
+
+    __tablename__ = "addresses"
+
+    mls: Mapped[str] = db.Column(db.String, nullable=True)
+    name: Mapped[str] = db.Column(db.String, nullable=True)
+    owner: Mapped[str] = db.Column(db.String, nullable=True)
+    neighborhood: Mapped[str] = db.Column(db.String, nullable=True)
+    number: Mapped[str] = db.Column(db.String)
+    street: Mapped[str] = db.Column(db.String)
+    zip: Mapped[str] = db.Column(db.String)
+    county: Mapped[str] = db.Column(db.String)
+    city: Mapped[str] = db.Column(db.String)
+    state: Mapped[str] = db.Column(db.String)
+    country: Mapped[str] = db.Column(db.String, nullable=True)
+    tra: Mapped[str] = db.Column(db.String, nullable=True)
+    built_year: Mapped[int] = db.Column(db.Integer, nullable=True)
+    units: Mapped[int] = db.Column(db.Integer, default=1)
+    beds: Mapped[int] = db.Column(db.Integer, nullable=True)
+    baths: Mapped[float] = db.Column(db.Float, nullable=True)
+    floor_space: Mapped[int] = db.Column(db.Integer, nullable=True)
+    floors: Mapped[int] = db.Column(db.Integer, default=1)
+    has_pool: Mapped[bool] = db.Column(db.Boolean, default=False)
+    pool_size: Mapped[int] = db.Column(db.Integer, nullable=True)
+    garage_spaces: Mapped[int] = db.Column(db.Integer, default=0)
+    covered_spaces: Mapped[int] = db.Column(db.Integer, default=0)
+    uncovered_spaces: Mapped[int] = db.Column(db.Integer, default=0)
+    parent: Mapped[str] = db.Column(db.String, nullable=True)
+    children: Mapped[str] = db.Column(db.String, nullable=True)

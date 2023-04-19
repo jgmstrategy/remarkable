@@ -24,6 +24,7 @@ def create_app(app_api: Api) -> Flask:
     return app
 
 
+flask_app = create_app(api)
+
 if __name__ == "__main__":
-    flask_app = create_app(api)
     flask_app.run()
