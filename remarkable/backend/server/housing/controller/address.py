@@ -2,6 +2,7 @@
 
 from flask_restx import Resource
 
+from remarkable.backend.server.models import add_and_commit
 from remarkable.backend.server.housing.config.address import (
     address_params,
     neighborhood_params,
@@ -12,6 +13,7 @@ from remarkable.backend.server.housing.models.address import (
     api,
     neighborhood,
     owner,
+    Owner as OwnerDbEntry
 )
 
 
@@ -28,10 +30,12 @@ class Owner(Resource):
         return {}
 
     @api.doc("create_owner")
-    @api.expect(owner)
-    def post(self) -> None:
+    @api.expect(owner, validate=True)
+    def post(self) -> dict:
         """Create an owner"""
-        api.abort(500)
+        next_owner = OwnerDbEntry(name=api.payload["name"])
+        id = add_and_commit(next_owner)
+        return {"id": str(id)}
 
 
 @api.route("/neighborhood")

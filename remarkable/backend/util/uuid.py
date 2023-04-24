@@ -18,6 +18,7 @@ class GUID(TypeDecorator):
     """GUID generator for SQLAlchemy"""
 
     impl = CHAR
+    cache_ok = True
 
     def load_dialect_impl(
         self, dialect: Dialect
@@ -35,9 +36,9 @@ class GUID(TypeDecorator):
             return str(value)
 
         if not isinstance(value, uuid.UUID):
-            return f"{uuid.UUID(value).int:.32x}"
+            return f"{uuid.UUID(value).int:32x}"
 
-        return f"{value.int:.32x}"
+        return f"{value.int:32x}"
 
     def process_result_value(self, value: Optional[Any], dialect: Dialect) -> Any:
         if value is None:

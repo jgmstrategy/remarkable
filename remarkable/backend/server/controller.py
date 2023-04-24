@@ -2,14 +2,14 @@
 
 from flask_restx import Api
 
-from remarkable.backend.server.housing.controller.address import api as address_api
-from remarkable.backend.server.housing.controller.rent import api as rent_api
-from remarkable.backend.server.housing.controller.sale import api as sale_api
+import remarkable.backend.server.housing.controller.address as address_controller
+import remarkable.backend.server.housing.controller.rent as rent_controller
+import remarkable.backend.server.housing.controller.sale as sale_controller
 
 api = Api(
     title="remarkable backend API", version="1.0", description="remarkable backend API"
 )
 
-api.add_namespace(address_api)
-api.add_namespace(rent_api)
-api.add_namespace(sale_api)
+api.add_namespace(address_controller.api)
+api.add_namespace(rent_controller.api)
+api.add_namespace(sale_controller.api)

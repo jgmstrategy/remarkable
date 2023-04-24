@@ -26,3 +26,10 @@ class Base(db.Model):
         default=db.func.current_timestamp(),
         onupdate=db.func.current_timestamp(),
     )
+
+
+def add_and_commit(object: Base, database: SQLAlchemy = db) -> GUID:
+    """Adds and commits an object to the database"""
+    database.session.add(object)
+    database.session.commit()
+    return object.id
