@@ -28,8 +28,8 @@ class Base(db.Model):
     )
 
 
-def add_and_commit(object: Base, database: SQLAlchemy = db) -> GUID:
+def add_and_commit(obj: Base, database: SQLAlchemy = db) -> str:
     """Adds and commits an object to the database"""
-    database.session.add(object)
+    database.session.add(obj)
     database.session.commit()
-    return object.id
+    return obj.id
