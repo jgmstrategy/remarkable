@@ -26,3 +26,10 @@ class Base(db.Model):
         default=db.func.current_timestamp(),
         onupdate=db.func.current_timestamp(),
     )
+
+
+def add_and_commit(obj: Base, database: SQLAlchemy = db) -> str:
+    """Adds and commits an object to the database"""
+    database.session.add(obj)
+    database.session.commit()
+    return obj.id
