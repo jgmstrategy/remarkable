@@ -7,12 +7,14 @@ from remarkable.backend.server.housing.config.address import (
     neighborhood_params,
     owner_params,
 )
+from remarkable.backend.server.housing.models.address import Owner as OwnerDbEntry
 from remarkable.backend.server.housing.models.address import (
     address,
     api,
     neighborhood,
     owner,
 )
+from remarkable.backend.server.models import add_and_commit
 
 
 @api.route("/owner")
@@ -28,10 +30,12 @@ class Owner(Resource):
         return {}
 
     @api.doc("create_owner")
-    @api.expect(owner)
-    def post(self) -> None:
+    @api.expect(owner, validate=True)
+    def post(self) -> dict:
         """Create an owner"""
-        api.abort(500)
+        next_owner = OwnerDbEntry(name=api.payload["name"])
+        id_ = add_and_commit(next_owner)
+        return {"id": str(id_)}
 
 
 @api.route("/neighborhood")

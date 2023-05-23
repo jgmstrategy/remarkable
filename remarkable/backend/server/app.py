@@ -19,7 +19,6 @@ def create_app(app_api: Api) -> Flask:
 
     app_api.init_app(app)
     db.init_app(app)
-    # flask_bcrypt.init_app(app)
 
     return app
 

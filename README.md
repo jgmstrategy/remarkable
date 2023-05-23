@@ -24,7 +24,7 @@ isort . & black . & mypy . & pylint remarkable
 Windows PowerShell:
 
 ```powershell
-isort &; black .; mypy .; pylint remarkable
+isort .; black .; mypy .; pylint remarkable
 ```
 
 ### Run Frontend
