@@ -26,9 +26,7 @@ class Owner(Resource):
     @api.marshal_with(owner)
     def get(self) -> dict:
         """Get an owner"""
-        get_owner = OwnerDbEntry(name=api.payload["name"])
-        id_ = get_and_return(get_owner)
-        return {"id": str(id_)}
+        return {}
 
     @api.doc("create_owner")
     @api.expect(owner, validate=True)
@@ -67,6 +65,7 @@ class Address(Resource):
     @api.marshal_with(address)
     def get(self) -> dict:
         """Get an address by ID"""
+        
         api.abort(500)
         return {}
 
