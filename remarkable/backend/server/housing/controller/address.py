@@ -26,6 +26,7 @@ class Owner(Resource):
     @api.marshal_with(owner)
     def get(self) -> dict:
         """Get an owner"""
+        api.abort(500)
         return {}
 
     @api.doc("create_owner")
