@@ -35,6 +35,7 @@ class Owner(Resource):
         """Create an owner"""
         next_owner = OwnerDbEntry(name=api.payload["name"])
         id_ = add_and_commit(next_owner)
+        
         return {"id": str(id_)}
 
 
