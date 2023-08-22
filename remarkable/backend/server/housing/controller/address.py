@@ -35,6 +35,7 @@ class Owner(Resource):
         """Create an owner"""
         next_owner = OwnerDbEntry(name=api.payload["name"])
         id_ = add_and_commit(next_owner)
+        
         return {"id": str(id_)}
 
 
@@ -66,6 +67,7 @@ class Address(Resource):
     @api.marshal_with(address)
     def get(self) -> dict:
         """Get an address by ID"""
+        
         api.abort(500)
         return {}
 
