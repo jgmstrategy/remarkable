@@ -8,6 +8,7 @@ from remarkable.backend.server.housing.config.address import (
     owner_params,
 )
 from remarkable.backend.server.housing.models.address import Owner as OwnerDbEntry
+from remarkable.backend.server.housing.models.address import Neighborhood as NeighborhoodDbEntry
 from remarkable.backend.server.housing.models.address import (
     address,
     api,
@@ -51,10 +52,12 @@ class Neighborhood(Resource):
         return {}
 
     @api.doc("create_neighborhood")
-    @api.expect(neighborhood)
-    def post(self) -> None:
+    @api.expect(neighborhood, validate=True)
+    def post(self) -> dict:
         """Create a neighborhood"""
-        api.abort(500)
+        next_neighborhood = NeighborhoodDbEntry(name=api.payload["name"])
+        id_ = add_and_commit(next_neighborhood)
+        return {"id": str(id_)}
 
 
 @api.route("/")
@@ -66,6 +69,7 @@ class Address(Resource):
     @api.marshal_with(address)
     def get(self) -> dict:
         """Get an address by ID"""
+        
         api.abort(500)
         return {}
 

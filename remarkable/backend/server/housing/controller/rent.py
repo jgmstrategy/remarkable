@@ -15,8 +15,7 @@ class Entry(Resource):
     @api.marshal_with(entry)
     def get(self) -> dict:
         """Get an entry"""
-        api.abort(404)
-        return {}
+        return {"message: Completion"}, 200
 
     @api.doc("create_entry")
     @api.expect(entry)

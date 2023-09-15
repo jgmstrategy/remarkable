@@ -33,3 +33,8 @@ def add_and_commit(obj: Base, database: SQLAlchemy = db) -> str:
     database.session.add(obj)
     database.session.commit()
     return obj.id
+
+def get_and_return(obj: Base, database: SQLAlchemy = db) -> str:
+    """Gets and returns an object from the database"""
+    database.session.get(obj)
+    return obj.id
